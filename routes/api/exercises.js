@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const workoutsCtrl = require('../../controllers/api/workoutsCtrl');
+const workoutsCtrl = require('../../controllers/api/exerciseCtrl');
 
-// GET /api/items
-router.get('/', workoutsCtrl.index);
-// GET /api/items/:id
-router.get('/:id', workoutsCtrl.show);
+router.post('/:id/log', workoutsCtrl.index);
+
+router.post('/:id/show', workoutsCtrl.show);
+
 
 module.exports = router;

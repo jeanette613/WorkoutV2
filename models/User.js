@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+//const bcrypt = require('bcrypt')
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
@@ -18,7 +19,11 @@ const userSchema = new Schema({
         trim: true,
         minLength: 4,
         required: true,
-    }
+    },
+
+    //workoutLog: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Exercise' }],
+
+
 })
 
 module.exports = mongoose.model('User', userSchema);
