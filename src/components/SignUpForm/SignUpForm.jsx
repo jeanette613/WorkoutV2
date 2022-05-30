@@ -1,44 +1,45 @@
-import { useState } from 'react';
-import * as usersService from '../../utilities/users-service';
+import { Component } from "react";
+import { signUp } from "../../utilities/users-api";
 
-export default function LoginForm({ setUser }) {
-    const [credentials, setCredentials] = useState({
+export default class SignUpForm extends Component {
+    state = {
+        username: '',
         email: '',
-        password: ''
-    });
-    const [error, setError] = useState('');
+        password: '',
+        error: ''
+    };
 
-    function handleChange(evt) {
-        setCredentials({ ...credentials, [evt.target.name]: evt.target.value });
-        setError('');
+    handleChange = (e) => {
+        this.setState({ ...this.state, [e.target.name]: e.target.value, error: '' })
     }
-
-    async function handleSubmit(evt) {
-        // Prevent form from being submitted to the server
-        evt.preventDefault();
+    handleSubmit = async (event) => {
+        event.preventDefault();
         try {
-            // The promise returned by the signUp service method
-            // will resolve to the user object included in the
-            // payload of the JSON Web Token (JWT)
-            const user = await usersService.login(credentials);
-            setUser(user);
+            const formData = { ...this.state };
+            delete formData.error;
+            const user = await signUp(formData);
+            this.props.setUser(user);
         } catch {
-            setError('Log In Failed - Try Again');
+            this.setState({ error: 'Sign Up Failed' });
         }
-    }
-
-    return (
-        <div>
-            <div className="form">
-                <form autoComplete="off" onSubmit={handleSubmit}>
-                    <label>Email</label>
-                    <input type="text" name="email" value={credentials.email} onChange={handleChange} required />
-                    <label>Password</label>
-                    <input type="password" name="password" value={credentials.password} onChange={handleChange} required />
-                    <button type="submit">LOG IN</button>
-                </form>
+    };
+    render() {
+        const disable = this.state.password;
+        return (
+            <div>
+                <div className="signupBox">
+                    <form autoComplete="off" onSubmit={this.handleSubmit}>
+                        <label>Username</label>
+                        <input type="text" name="username" value={this.state.username} onChange={this.handleChange} required />
+                        <label>Email</label>
+                        <input type="email" name="email" value={this.state.email} onChange={this.handleChange} required />
+                        <label>Password</label>
+                        <input type="password" name="password" value={this.state.password} required />
+                        <button type="submit" disabled={disable}>Click to Sign Up</button>
+                    </form>
+                </div>
+                <p className="error-message">&nbsp;{this.state.error}</p>
             </div>
-            <p className="error-message">&nbsp;{error}</p>
-        </div>
-    );
+        )
+    }
 }
