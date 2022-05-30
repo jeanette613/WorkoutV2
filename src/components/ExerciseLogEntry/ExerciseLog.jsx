@@ -1,9 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
 import * as logAPI from '../../utilities/exercises-api'
-import { Link, useNavigate } from 'react-router-dom';
+
+
 
 export default function ExerciseEntry({ user, setUser }) {
     const [log, setLog] = useState(null);
+    const type = useRef()
 
     //Needs useEffect function
 
@@ -23,7 +25,24 @@ export default function ExerciseEntry({ user, setUser }) {
         <div>
             <div>
                 <form onSubmit={handleAddtoLog}>
-                    <textarea placeholder='Exercise Name' type="text" ref={text} />
+                    <label>
+                        <select ref={type}>
+                            <option value='Resistance'>
+                                Resistance
+                            </option>
+                            <option value='Cardio'>
+                                Cardio
+                            </option>
+                            <option value='Calisthenics'>
+                                Calisthenics
+                            </option>
+                        </select>
+                    </label>
+                    <textarea placeholder='Exercise Name' type="text" />
+                    <div className='submit-button'>
+                        <input type='submit' value="Add Exercise Entry" />
+
+                    </div>
                 </form>
             </div>
         </div>
