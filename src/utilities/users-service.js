@@ -45,6 +45,6 @@ export function logout() {
 // checkToken
 
 export function checkToken() {
-    return usersAPI.checkToken()
+    return usersAPI.getToken()
         .then(dateStr => new Date(dateStr))
 }
