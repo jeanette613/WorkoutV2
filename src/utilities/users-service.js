@@ -1,50 +1,41 @@
-import * as usersAPI from './users-api'
-
+import * as usersAPI from './users-api';
 
 export async function signUp(userData) {
-    console.log('test1')
-    const token = await usersAPI.signUp(userData)
-    console.log('test2')
-    //return promise that userAPI will run
-    localStorage.setItem('token', token)
-    return token
+    // Delete the network request code to the
+    // users-api.js module which will ultimately
+    // return the JWT
+    const token = await usersAPI.signUp(userData);
+    // Persist the token to localStorage
+    localStorage.setItem('token', token);
+    return getUser();
 }
 
-// Login
 export async function login(credentials) {
-    const token = await usersAPI.login(credentials)
-    localStorage.setItem('token', token)
-    return getUser()
+    const token = await usersAPI.login(credentials);
+    // Persist the token to localStorage
+    localStorage.setItem('token', token);
+    return getUser();
 }
-//Get Token
-export async function getToken() {
+
+export function getToken() {
     const token = localStorage.getItem('token');
+    // getItem will return null if no key
     if (!token) return null;
-    const payload = JSON.parse(window.atob(token.split(".")[1]))
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    // A JWT's expiration is expressed in seconds, not miliseconds
     if (payload.exp < Date.now() / 1000) {
-        localStorage.removeItem('token')
+        // Token has expired
+        localStorage.removeItem('token');
         return null;
     }
     return token;
 }
-// GetUser
 
-export async function getUser() {
-    const token = await getToken();
-    // console.log("token is ", token)
-    return token ? JSON.parse(window.atob(token.split(".")[1])).user : null
+export function getUser() {
+    const token = getToken();
+    return token ? JSON.parse(atob(token.split('.')[1])).user : null;
 }
 
-// Logout
-
-export function logout() {
-    localStorage.removeItem('userID')
-    localStorage.removeItem('token')
-}
-
-// checkToken
-
-export function checkToken() {
-    return usersAPI.getToken()
-        .then(dateStr => new Date(dateStr))
+export function logOut() {
+    localStorage.removeItem('token');
 }
