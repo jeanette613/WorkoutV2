@@ -24,8 +24,8 @@ app.use(require('./config/checkToken'));
 // Put API routes here, before the "catch all" route
 app.use('/api/users', require('./routes/api/users'));
 // Protect the API routes below from anonymous users
-const ensureLoggedIn = require('./config/ensureLoggedIn');
-app.use('/api/exercises', ensureLoggedIn, require('./routes/api/exercises'));
+// const ensureLoggedIn = require('./config/ensureLoggedIn');
+// app.use('/api/exercises', ensureLoggedIn, require('./routes/api/exercises'));
 
 //Will comment back in when we set routes for workout log
 //app.use('/api/workoutLog', ensureLoggedIn, require('./routes/api/workoutLog'));

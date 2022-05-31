@@ -6,6 +6,7 @@ import * as logAPI from '../../utilities/exercises-api'
 export default function ExerciseEntry({ user, setUser }) {
     const [log, setLog] = useState(null);
     const type = useRef()
+    const group = useRef()
 
     //Needs useEffect function
 
@@ -25,6 +26,7 @@ export default function ExerciseEntry({ user, setUser }) {
         <div>
             <div>
                 <form onSubmit={handleAddtoLog}>
+                    <p>Select Type of Exercise</p>
                     <label>
                         <select ref={type}>
                             <option value='Resistance'>
@@ -38,10 +40,22 @@ export default function ExerciseEntry({ user, setUser }) {
                             </option>
                         </select>
                     </label>
+                    <label>
+                        <select ref={group}>
+                            <option value='Upper Body'>
+                                Upper Body
+                            </option>
+                            <option value='Core'>
+                                Core
+                            </option>
+                            <option value='Legs'>
+                                Legs
+                            </option>
+                        </select>
+                    </label>
                     <textarea placeholder='Exercise Name' type="text" />
                     <div className='submit-button'>
                         <input type='submit' value="Add Exercise Entry" />
-
                     </div>
                 </form>
             </div>

@@ -2,7 +2,7 @@ import sendRequest from './send-request';
 
 const BASE_URL = '/api/exercises';
 
-// Retrieve exrcise history of logged in user
+// Retrieve exercise history of logged in user
 export function getLog() {
     return sendRequest(`${BASE_URL}/log`);
 }

@@ -21,7 +21,7 @@ const userSchema = new Schema({
         required: true,
     },
 
-    //workoutLog: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Exercise' }],
+    workoutLog: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Exercise' }],
 
 
 })
