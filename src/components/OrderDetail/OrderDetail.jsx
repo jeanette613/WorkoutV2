@@ -20,9 +20,10 @@ export default function OrderDetail({ order, handleChangeQty, handleCheckout }) 
                 {order.isPaid ?
                     <span>ORDER <span className="smaller">{order.orderId}</span></span>
                     :
-                    <span>NEW ORDER</span>
+                    <span>Time of Meal  </span>
                 }
-                <span>{new Date(order.updatedAt).toLocaleDateString()}</span>
+                <span>{new Date(order.updatedAt).toLocaleDateString()}  </span>
+                <span>{new Date(order.updatedAt).toLocaleTimeString()}</span>
             </div>
             <div className={`${styles.lineItemContainer} flex-ctr-ctr flex-col scroll-y`}>
                 {lineItems.length ?
@@ -36,14 +37,14 @@ export default function OrderDetail({ order, handleChangeQty, handleCheckout }) 
                                     className="btn-sm"
                                     onClick={handleCheckout}
                                     disabled={!lineItems.length}
-                                >CHECKOUT</button>
+                                >Log Meal</button>
                             }
                             <span>{order.totalQty}</span>
-                            <span className={styles.right}>${order.orderTotal.toFixed(2)}</span>
+                            <span className={styles.right}>{order.orderTotal}</span>
                         </section>
                     </>
                     :
-                    <div className={styles.hungry}>Hungry?</div>
+                    <div className={styles.hungry}>Total Meal Calories</div>
                 }
             </div>
         </div>

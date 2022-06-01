@@ -20,7 +20,7 @@
     font-size: 1.3vw;
 }
 
-.LineItem .extPrice {
+.LineItem .extCalories {
     display: flex;
     justify-content: flex-end;
     align-items: center;

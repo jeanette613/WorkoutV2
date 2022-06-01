@@ -10,9 +10,9 @@ const lineItemSchema = new Schema({
     toJSON: { virtuals: true }
 });
 
-lineItemSchema.virtual('extPrice').get(function () {
+lineItemSchema.virtual('extCalories').get(function () {
     // 'this' is bound to the lineItem subdoc
-    return this.qty * this.item.price;
+    return this.qty * this.item.calories;
 });
 
 const orderSchema = new Schema({
@@ -25,7 +25,7 @@ const orderSchema = new Schema({
 });
 
 orderSchema.virtual('orderTotal').get(function () {
-    return this.lineItems.reduce((total, item) => total + item.extPrice, 0);
+    return this.lineItems.reduce((total, item) => total + item.extCalories, 0);
 });
 
 orderSchema.virtual('totalQty').get(function () {

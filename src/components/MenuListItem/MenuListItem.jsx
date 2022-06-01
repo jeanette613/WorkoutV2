@@ -6,7 +6,7 @@ export default function MenuListItem({ menuItem, handleAddToOrder }) {
             <div className={styles.emoji + ' ' + 'flex-ctr-ctr'}>{menuItem.emoji}</div>
             <div className={styles.name}>{menuItem.name}</div>
             <div className={styles.buy}>
-                <span>${menuItem.price.toFixed(2)}</span>
+                <span>{menuItem.calories} Calories</span>
                 <button className="btn-sm" onClick={() => handleAddToOrder(menuItem._id)}>
                     ADD
                 </button>
