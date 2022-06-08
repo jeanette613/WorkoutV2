@@ -9,7 +9,7 @@ export default function OrderListItem({ order, isSelected, handleSelectOrder }) 
             </div>
             <div className="align-rt">
                 <div>Calories   {order.orderTotal}</div>
-                <div className="smaller">{order.totalQty} {order.totalQty > 1 ? 's' : ''}</div>
+                <div className="smaller">{order.totalQty} Cal Adjustment</div>
             </div>
         </div>
     );

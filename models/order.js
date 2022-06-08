@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const itemSchema = require('./itemSchema');
 
 const lineItemSchema = new Schema({
-    qty: { type: Number, default: 1 },
+    qty: { type: Number, default: 10 },
     item: itemSchema
 }, {
     timestamps: true,
@@ -12,13 +12,13 @@ const lineItemSchema = new Schema({
 
 lineItemSchema.virtual('extCalories').get(function () {
     // 'this' is bound to the lineItem subdoc
-    return this.qty * this.item.calories;
+    return this.qty + this.item.calories;
 });
 
 const orderSchema = new Schema({
     user: { type: Schema.Types.ObjectId, ref: 'User' },
     lineItems: [lineItemSchema],
-    isPaid: { type: Boolean, default: false }
+    isPaid: { type: Boolean, default: false },
 }, {
     timestamps: true,
     toJSON: { virtuals: true }

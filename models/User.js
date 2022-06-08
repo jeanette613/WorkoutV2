@@ -18,6 +18,11 @@ const userSchema = new Schema({
         trim: true,
         minlength: 3,
         required: true
+    },
+    calMax: {
+        type: Number,
+        trim: true,
+        minlength: 4
     }
 }, {
     timestamps: true,
