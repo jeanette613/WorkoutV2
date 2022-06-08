@@ -7,4 +7,6 @@ router.post('/', usersCtrl.create);
 // POST /api/users/login
 router.post('/login', usersCtrl.login);
 
+router.post('/updateprofile', usersCtrl.edit)
+
 module.exports = router;

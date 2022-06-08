@@ -22,7 +22,8 @@ const userSchema = new Schema({
     calMax: {
         type: Number,
         trim: true,
-        minlength: 4
+        minlength: 4,
+        default: 1500
     }
 }, {
     timestamps: true,

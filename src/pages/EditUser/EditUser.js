@@ -1,17 +1,40 @@
-import { useState, useEffect, useRef } from 'react';
-import * as usersAPI from '../../utilities/orders-user';
-import { Link, useNavigate } from 'react-router-dom';
-import UserLogOut from '../../components/UserLogOut/UserLogOut';
+import { useState, useRef } from 'react';
+import * as usersService from '../../utilities/users-api'
 
-export default function EditUserProfile({ user }) {
+
+export default function EditUserProfile({ user, setUser }) {
     const userName = useRef();
     const userEmail = useRef();
     const calMax = useRef();
+    const [profile, setProfile] = useState({})
+    const [error, setError] = useState('');
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
+    function handleChange(evt) {
+        setProfile({ ...profile, [evt.target.name]: evt.target.value });
+        setError('');
+    }
+
+    async function handleSubmit(evt) {
+        evt.preventDefault();
         try {
-
+            const user = await usersService.editUser(profile);
+            setUser(user);
+        } catch {
+            setError('User Updated');
         }
     }
+
+    return (
+        <main className='editUser'>
+            <div>
+                <input defaultValue={setProfile.userName} type="text" ref={userName} onChange={handleChange} />
+                <input defaultValue={setProfile.userEmail} type="text" ref={userEmail} onChange={handleChange} />
+                <input defaultValue={setProfile.calMax} type="text" ref={calMax} onChange={handleChange} />
+            </div>
+            <div>
+                <button onClick={handleSubmit} className="button">Update Profile</button>
+            </div>
+        </main>
+    )
+
 }
