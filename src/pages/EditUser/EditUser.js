@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import * as usersService from '../../utilities/users-api'
 
 
+
 export default function EditUserProfile({ user, setUser }) {
     const userName = useRef();
     const userEmail = useRef();
@@ -17,10 +18,10 @@ export default function EditUserProfile({ user, setUser }) {
     async function handleSubmit(evt) {
         evt.preventDefault();
         try {
-            const user = await usersService.editUser(profile);
-            setUser(user);
+            const updatedUser = await usersService.editUser(user._id);
+            setUser(updatedUser);
         } catch {
-            setError('User Updated');
+            setError('User Not Updated');
         }
     }
 

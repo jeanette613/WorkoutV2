@@ -4,7 +4,7 @@ const User = require('../../models/user');
 
 module.exports = {
   create,
-  put,
+  edit,
   login
 };
 
@@ -22,7 +22,7 @@ async function create(req, res) {
   }
 }
 
-async function put(req, res) {
+async function edit(req, res) {
   const { body } = req
   User.findByIdAndUpdate(req.params.id, body, { new: true }, (err, updatedUser) => {
     if (!err) {
