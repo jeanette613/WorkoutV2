@@ -13,6 +13,11 @@
     cursor: pointer;
 }
 
+.order-id {
+    display: block;
+
+}
+
 .OrderListItem>div>div:first-child {
     margin-bottom: .5vmin;
 }

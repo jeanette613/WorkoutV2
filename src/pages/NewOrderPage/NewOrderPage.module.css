@@ -1,14 +1,18 @@
 .NewOrderPage {
-    height: 100%;
+    height: fit-content;
+    align-items: center;
     display: block;
-    grid-template-columns: 1.6fr 3.5fr 3fr;
-    grid-template-rows: 1fr;
+    grid-template-columns: 4.5fr 4fr;
+    grid-template-rows: 2fr;
     background-color: var(--white);
     border-radius: 2vmin;
+    padding-left: 100px;
+    padding-right: 100px;
 }
 
 .NewOrderPage aside {
     display: flex;
+    height: fit-content;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
