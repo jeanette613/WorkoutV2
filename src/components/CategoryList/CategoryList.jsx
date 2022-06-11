@@ -2,7 +2,7 @@ import styles from './CategoryList.module.css';
 
 export default function CategoryList({ categories, activeCat, setActiveCat }) {
     const cats = categories.map(cat =>
-        <li
+        <a
             key={cat}
             className={cat === activeCat ? styles.active : ''}
             // FYI, the below will also work, but will give a warning
@@ -10,11 +10,11 @@ export default function CategoryList({ categories, activeCat, setActiveCat }) {
             onClick={() => setActiveCat(cat)}
         >
             {cat}
-        </li>
+        </a>
     );
     return (
-        <ul className={styles.CategoryList}>
+        <a className={styles.CategoryList}>
             {cats}
-        </ul>
+        </a>
     );
 }

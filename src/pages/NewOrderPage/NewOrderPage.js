@@ -65,15 +65,17 @@ export default function NewOrderPage({ user, setUser }) {
                 <Link to="/orders" className="button btn-sm">PREVIOUS MEALS</Link>
                 <UserLogOut user={user} setUser={setUser} />
             </aside>
-            <MenuList
-                menuItems={menuItems.filter(item => item.category.name === activeCat)}
-                handleAddToOrder={handleAddToOrder}
-            />
-            <OrderDetail
-                order={cart}
-                handleChangeQty={handleChangeQty}
-                handleCheckout={handleCheckout}
-            />
+            <div>
+                <MenuList
+                    menuItems={menuItems.filter(item => item.category.name === activeCat)}
+                    handleAddToOrder={handleAddToOrder}
+                />
+                <OrderDetail
+                    order={cart}
+                    handleChangeQty={handleChangeQty}
+                    handleCheckout={handleCheckout}
+                />
+            </div>
         </main>
     );
 }
